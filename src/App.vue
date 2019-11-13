@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    {{ getAppName }}
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -7,6 +8,30 @@
     <router-view/>
   </div>
 </template>
+
+
+<script>
+import { mapGetters, mapActions } from 'vuex'
+export default {
+  name: 'App',
+  computed: {
+    ...mapGetters([
+      'getAppName',
+      'myNumber'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'logError'
+    ])
+  },
+  mounted() {
+    setInterval(this.logError, 1000)
+  }
+}
+</script>
+
+
 
 <style>
 #app {
